@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Servicos\" />
+    <Folder Include="Repositorios\" />
+    <Folder Include="ObjetosDeValor\" />
+  </ItemGroup>
+
 </Project>

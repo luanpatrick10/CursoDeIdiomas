@@ -3,7 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursoDeIdiomas", "CursoDeIdiomas\CursoDeIdiomas.csproj", "{27CEDB03-2625-4EFA-AA19-1499046D97DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CursoDeIdiomas.UI", "CursoDeIdiomas\CursoDeIdiomas.UI.csproj", "{27CEDB03-2625-4EFA-AA19-1499046D97DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servicos", "Servicos", "{9D268DDD-5051-45A7-9AC0-5FC49E8C65F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositorios", "Repositorios", "{B390E350-E582-4CEC-B156-F2F80D9522BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dominio", "Dominio", "{C041038F-9C4A-4D45-B94B-16502173B942}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursoDeIdiomas.Dominio", "CursoDeIdiomas.Dominio\CursoDeIdiomas.Dominio.csproj", "{2EEEAA4B-1156-480F-A397-71C97D783F31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursoDeIdiomas.Repositorio", "CursoDeIdiomas.Repositorio\CursoDeIdiomas.Repositorio.csproj", "{AF621191-7B4A-4563-82B9-935A03D49716}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursoDeIdiomas.Servicos", "CursoDeIdiomas.Servicos\CursoDeIdiomas.Servicos.csproj", "{211E94B5-1B8F-47D2-84F5-01B240599E99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +27,26 @@ Global
 		{27CEDB03-2625-4EFA-AA19-1499046D97DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27CEDB03-2625-4EFA-AA19-1499046D97DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27CEDB03-2625-4EFA-AA19-1499046D97DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EEEAA4B-1156-480F-A397-71C97D783F31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EEEAA4B-1156-480F-A397-71C97D783F31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EEEAA4B-1156-480F-A397-71C97D783F31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EEEAA4B-1156-480F-A397-71C97D783F31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF621191-7B4A-4563-82B9-935A03D49716}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF621191-7B4A-4563-82B9-935A03D49716}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF621191-7B4A-4563-82B9-935A03D49716}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF621191-7B4A-4563-82B9-935A03D49716}.Release|Any CPU.Build.0 = Release|Any CPU
+		{211E94B5-1B8F-47D2-84F5-01B240599E99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{211E94B5-1B8F-47D2-84F5-01B240599E99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{211E94B5-1B8F-47D2-84F5-01B240599E99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{211E94B5-1B8F-47D2-84F5-01B240599E99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2EEEAA4B-1156-480F-A397-71C97D783F31} = {C041038F-9C4A-4D45-B94B-16502173B942}
+		{AF621191-7B4A-4563-82B9-935A03D49716} = {B390E350-E582-4CEC-B156-F2F80D9522BF}
+		{211E94B5-1B8F-47D2-84F5-01B240599E99} = {9D268DDD-5051-45A7-9AC0-5FC49E8C65F2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FB2C9E3F-5645-4095-8F68-10E31C9FD870}

@@ -1,4 +1,4 @@
-﻿namespace CursoDeIdiomas.Dominio.Entidades
+﻿namespace CursoDeIdiomas.Dominio.ObjetosDeDominio
 {
     public abstract class Entidade
     {
