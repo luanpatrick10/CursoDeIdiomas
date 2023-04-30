@@ -8,7 +8,11 @@
 
   <ItemGroup>
     <Folder Include="DTOS\" />
-    <Folder Include="Servicos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CursoDeIdiomas.Dominio\CursoDeIdiomas.Dominio.csproj" />
+    <ProjectReference Include="..\CursoDeIdiomas.Repositorio\CursoDeIdiomas.Repositorio.csproj" />
   </ItemGroup>
 
 </Project>

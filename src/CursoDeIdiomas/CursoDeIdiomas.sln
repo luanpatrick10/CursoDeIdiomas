@@ -11,11 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositorios", "Repositorio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dominio", "Dominio", "{C041038F-9C4A-4D45-B94B-16502173B942}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursoDeIdiomas.Dominio", "CursoDeIdiomas.Dominio\CursoDeIdiomas.Dominio.csproj", "{2EEEAA4B-1156-480F-A397-71C97D783F31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CursoDeIdiomas.Dominio", "CursoDeIdiomas.Dominio\CursoDeIdiomas.Dominio.csproj", "{2EEEAA4B-1156-480F-A397-71C97D783F31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursoDeIdiomas.Repositorio", "CursoDeIdiomas.Repositorio\CursoDeIdiomas.Repositorio.csproj", "{AF621191-7B4A-4563-82B9-935A03D49716}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CursoDeIdiomas.Repositorio", "CursoDeIdiomas.Repositorio\CursoDeIdiomas.Repositorio.csproj", "{AF621191-7B4A-4563-82B9-935A03D49716}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursoDeIdiomas.Servicos", "CursoDeIdiomas.Servicos\CursoDeIdiomas.Servicos.csproj", "{211E94B5-1B8F-47D2-84F5-01B240599E99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CursoDeIdiomas.Servicos", "CursoDeIdiomas.Servicos\CursoDeIdiomas.Servicos.csproj", "{211E94B5-1B8F-47D2-84F5-01B240599E99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

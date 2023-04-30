@@ -19,6 +19,15 @@ namespace CursoDeIdiomas.Dominio.Entidades
         {
             ValidacoesDeDominio.ValidarSeNaoEhNulo(Numero, MensagensDeValidacoes.PropriedadeNula(nameof(Numero)));
             ValidacoesDeDominio.ValidarSeMenorOuIgualQue(Alunos.Count, LimiteDeAlunos, MensagensDeValidacoes.PropriedadeExcedendoOValorMaximo(nameof(Alunos)));
+            ValidarAlunos();
+        }
+        private void ValidarAlunos()
+        {
+            foreach (Aluno aluno in Alunos)
+            {
+                if (Alunos.Exists(alunoNaLista => alunoNaLista.Id == aluno.Id))
+                    throw new ExcecoesDeDominio($"O aluno {aluno.Nome}, já esta cadastrado nessa turma");
+            }
         }
     }
 }
