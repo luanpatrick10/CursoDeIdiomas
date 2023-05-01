@@ -5,7 +5,7 @@ namespace CursoDeIdiomas.Dominio.Entidades
     public class Turma : Entidade, IAggregateRoot
     {
         public string Numero { get; private set; }
-        public DateTime AnoLetivo { private get; set; }
+        public DateTime AnoLetivo { get; private set; }
         public int LimiteDeAlunos { get => 5; }
         public List<Aluno> Alunos { get; private set; }
         public Turma(string numero, DateTime anoLetivo, List<Aluno> alunos)

@@ -15,4 +15,9 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CursoDeIdiomas.Dominio\CursoDeIdiomas.Dominio.csproj" />
+    <ProjectReference Include="..\CursoDeIdiomas.Servicos\CursoDeIdiomas.Servicos.csproj" />
+  </ItemGroup>
+
 </Project>
