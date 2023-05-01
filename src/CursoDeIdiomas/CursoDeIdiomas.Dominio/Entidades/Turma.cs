@@ -8,6 +8,11 @@ namespace CursoDeIdiomas.Dominio.Entidades
         public DateTime AnoLetivo { get; private set; }
         public int LimiteDeAlunos { get => 5; }
         public List<Aluno> Alunos { get; private set; }
+
+        public Turma()
+        {
+
+        }
         public Turma(string numero, DateTime anoLetivo, List<Aluno> alunos)
         {
             Numero = numero;

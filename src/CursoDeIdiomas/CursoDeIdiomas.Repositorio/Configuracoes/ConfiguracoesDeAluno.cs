@@ -8,7 +8,7 @@ namespace CursoDeIdiomas.Repositorio.Configuracoes
     {
         public void Configure(EntityTypeBuilder<Aluno> builder)
         {
-            builder.ToTable("Turmas");
+            builder.ToTable("Alunos");
             builder.HasKey(Aluno => Aluno.Id);
             builder.Property(Aluno => Aluno.Cpf).IsRequired();
             builder.Property(Aluno => Aluno.Nome).IsRequired();

@@ -10,12 +10,16 @@ namespace CursoDeIdiomas.Dominio.Entidades
         public string Email { get; private set; }
         public List<Turma> TurmasCadastradas { get; private set; }
         public int QuantidadeMinimaDeTurma { get => 1; }
-        public Aluno(string nome, string cpf, string email, List<Turma> turmas)
+        public Aluno()
+        {
+
+        }
+        public Aluno(string nome, string cpf, string email, List<Turma> turmasCadastradas)
         {
             Nome = nome;
             Cpf = cpf;
             Email = email;
-            TurmasCadastradas = turmas;
+            TurmasCadastradas = turmasCadastradas;
             ValidarEntidade();
         }
 
