@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTOS\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\CursoDeIdiomas.Dominio\CursoDeIdiomas.Dominio.csproj" />
     <ProjectReference Include="..\CursoDeIdiomas.Repositorio\CursoDeIdiomas.Repositorio.csproj" />
   </ItemGroup>

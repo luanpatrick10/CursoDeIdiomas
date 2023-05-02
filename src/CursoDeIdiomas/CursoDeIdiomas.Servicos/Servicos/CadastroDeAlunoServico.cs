@@ -1,4 +1,5 @@
 ﻿using CursoDeIdiomas.Dominio.Entidades;
+using CursoDeIdiomas.Dominio.ObjetosDeDominio;
 using CursoDeIdiomas.Dominio.Repositorios;
 using CursoDeIdiomas.Dominio.Servicos;
 
@@ -29,6 +30,7 @@ namespace CursoDeIdiomas.Servicos.Servicos
         public async Task<Aluno> Deletar(Aluno aluno)
         {
             aluno.ValidarEntidade();
+            ValidarSeAlunoNaoEstaMatriculadoEmTurmas(aluno);
             await _alunoRepositorio.Deletar(aluno);
             return aluno;
         }
@@ -42,5 +44,13 @@ namespace CursoDeIdiomas.Servicos.Servicos
         {
             return await _alunoRepositorio.ObterAlunos();
         }
+
+        #region Métodos privados
+        private void ValidarSeAlunoNaoEstaMatriculadoEmTurmas(Aluno aluno)
+        {
+            if (aluno.TurmasCadastradas.Count() > 0)
+                throw new ExcecoesDeDominio("Esse aluno não pode ser excluido(a) pois está matriculado em alguma turma");
+        }
+        #endregion
     }
 }

@@ -1,5 +1,6 @@
-﻿using CursoDeIdiomas.Dominio.Entidades;
-using CursoDeIdiomas.Dominio.Servicos;
+﻿using CursoDeIdiomas.Dominio.Servicos;
+using CursoDeIdiomas.Servicos.DTOS;
+using CursoDeIdiomas.Servicos.DTOS.Mapping;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CursoDeIdiomas.UI.Controllers
@@ -8,16 +9,76 @@ namespace CursoDeIdiomas.UI.Controllers
     [ApiController]
     public class AlunoController : ControllerBase
     {
-        private ICadastroDeTurmaServico _cadastroDeTurma;
-        public AlunoController(ICadastroDeTurmaServico cadastroDeTurma)
+        private ICadastroDeAlunoServico _cadastroDeAluno;
+        public AlunoController(ICadastroDeAlunoServico cadastroDeAluno)
         {
-            _cadastroDeTurma = cadastroDeTurma;
+            _cadastroDeAluno = cadastroDeAluno;
         }
-        [HttpPost]
-        public async Task<IActionResult> CadastraTurma(Turma turma)
+
+        [HttpPost("cadastrar-aluno")]
+        public async Task<IActionResult> CadastrarAluno(AlunoDTO alunoDTO)
         {
-            _cadastroDeTurma.Criar(turma);
-            return Ok();
+            try
+            {
+                await _cadastroDeAluno.Criar(alunoDTO.AlunoDTOAluno());
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+        [HttpGet("obter-todos-alunos")]
+        public async Task<ActionResult<IEnumerable<AlunoDTO>>> ObterAlunos()
+        {
+            try
+            {
+                return Ok(_cadastroDeAluno.ObterTodos().Result.AlunosToAlunosDTO());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("obter-aluno/{id}")]
+        public async Task<ActionResult<IEnumerable<AlunoDTO>>> ObterAluno(int id)
+        {
+            try
+            {
+                return Ok(_cadastroDeAluno.ObterPorId(id).Result.AlunoToAlunoDTO());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPost("deletar-aluno")]
+        public async Task<ActionResult> DeletarAluno(AlunoDTO alunoDTO)
+        {
+            try
+            {
+                await _cadastroDeAluno.Deletar(alunoDTO.AlunoDTOAluno());
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("atualizar-aluno")]
+        public async Task<ActionResult> AtualizarAluno(AlunoDTO alunoDTO)
+        {
+            try
+            {
+                await _cadastroDeAluno.Atualizar(alunoDTO.AlunoDTOAluno());
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

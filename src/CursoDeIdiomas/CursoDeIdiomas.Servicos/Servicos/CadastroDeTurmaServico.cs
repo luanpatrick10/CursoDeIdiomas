@@ -1,4 +1,5 @@
 ﻿using CursoDeIdiomas.Dominio.Entidades;
+using CursoDeIdiomas.Dominio.ObjetosDeDominio;
 using CursoDeIdiomas.Dominio.Repositorios;
 using CursoDeIdiomas.Dominio.Servicos;
 
@@ -27,6 +28,8 @@ namespace CursoDeIdiomas.Servicos.Servicos
         public async Task<Turma> Deletar(Turma turma)
         {
             turma.ValidarEntidade();
+            ValidarSeNaoPossuirAlunosNaTurma(turma);
+            ValidaSeidEhValido(turma.Id);
             return await _turmaRepositorio.Deletar(turma);
         }
         public async Task<Turma> ObterPorId(int? id)
@@ -37,5 +40,19 @@ namespace CursoDeIdiomas.Servicos.Servicos
         {
             return await _turmaRepositorio.ObterTurmas();
         }
+
+        #region Métodos privados
+        private void ValidarSeNaoPossuirAlunosNaTurma(Turma turma)
+        {
+            if (turma.Alunos.Count() > 0)
+                throw new ExcecoesDeDominio("Essa turma não pode ser excluida pois existem alunos nela.");
+        }
+
+        private void ValidaSeidEhValido(int id)
+        {
+            if (id == 0)
+                throw new ExcecoesDeDominio("Id inválido.");
+        }
+        #endregion
     }
 }

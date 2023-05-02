@@ -9,11 +9,11 @@ namespace CursoDeIdiomas.Repositorio.Configuracoes
         public void Configure(EntityTypeBuilder<Aluno> builder)
         {
             builder.ToTable("Alunos");
-            builder.HasKey(Aluno => Aluno.Id);
-            builder.Property(Aluno => Aluno.Cpf).IsRequired();
-            builder.Property(Aluno => Aluno.Nome).IsRequired();
-            builder.Property(Aluno => Aluno.Email).IsRequired();
-            builder.HasMany(Aluno => Aluno.TurmasCadastradas);
+            builder.HasKey(aluno => aluno.Id);
+            builder.Property(aluno => aluno.Cpf).IsRequired();
+            builder.Property(aluno => aluno.Nome).IsRequired();
+            builder.Property(aluno => aluno.Email).IsRequired();
+            builder.HasMany(aluno => aluno.TurmasCadastradas);
         }
     }
 }

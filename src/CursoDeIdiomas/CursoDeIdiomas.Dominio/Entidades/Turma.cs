@@ -7,14 +7,14 @@ namespace CursoDeIdiomas.Dominio.Entidades
         public string Numero { get; private set; }
         public DateTime AnoLetivo { get; private set; }
         public int LimiteDeAlunos { get => 5; }
-        public List<Aluno> Alunos { get; private set; }
+        public ICollection<Aluno> Alunos { get; private set; }
 
         public Turma()
         {
-
         }
-        public Turma(string numero, DateTime anoLetivo, List<Aluno> alunos)
+        public Turma(int id, string numero, DateTime anoLetivo, ICollection<Aluno> alunos)
         {
+            Id = id;
             Numero = numero;
             AnoLetivo = anoLetivo;
             Alunos = alunos;
@@ -23,14 +23,14 @@ namespace CursoDeIdiomas.Dominio.Entidades
         public override void ValidarEntidade()
         {
             ValidacoesDeDominio.ValidarSeNaoEhNulo(Numero, MensagensDeValidacoes.PropriedadeNula(nameof(Numero)));
-            ValidacoesDeDominio.ValidarSeMenorOuIgualQue(Alunos.Count, LimiteDeAlunos, MensagensDeValidacoes.PropriedadeExcedendoOValorMaximo(nameof(Alunos)));
-            ValidarAlunos();
+            ValidacoesDeDominio.ValidarSeMenorOuIgualQue(Alunos.Count(), LimiteDeAlunos, MensagensDeValidacoes.PropriedadeExcedendoOValorMaximo(nameof(Alunos)));
+            ValidarSeNaoTemAlunoDuplicado();
         }
-        private void ValidarAlunos()
+        private void ValidarSeNaoTemAlunoDuplicado()
         {
             foreach (Aluno aluno in Alunos)
             {
-                if (Alunos.Exists(alunoNaLista => alunoNaLista.Id == aluno.Id))
+                if (Alunos.First(alunoNaLista => alunoNaLista.Id == aluno.Id) != null)
                     throw new ExcecoesDeDominio($"O aluno {aluno.Nome}, já esta cadastrado nessa turma");
             }
         }
