@@ -1,6 +1,7 @@
-﻿using CursoDeIdiomas.Dominio.Servicos;
+﻿using AutoMapper;
+using CursoDeIdiomas.Dominio.Entidades;
+using CursoDeIdiomas.Dominio.Servicos;
 using CursoDeIdiomas.Servicos.DTOS;
-using CursoDeIdiomas.Servicos.DTOS.Mapping;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CursoDeIdiomas.UI.Controllers
@@ -10,17 +11,19 @@ namespace CursoDeIdiomas.UI.Controllers
     public class AlunoController : ControllerBase
     {
         private ICadastroDeAlunoServico _cadastroDeAluno;
-        public AlunoController(ICadastroDeAlunoServico cadastroDeAluno)
+        private IMapper _mapper;
+        public AlunoController(ICadastroDeAlunoServico cadastroDeAluno, IMapper mapper)
         {
             _cadastroDeAluno = cadastroDeAluno;
+            _mapper = mapper;
         }
 
         [HttpPost("cadastrar-aluno")]
-        public async Task<IActionResult> CadastrarAluno(AlunoDTO alunoDTO)
+        public async Task<IActionResult> CadastrarAluno(NovoAlunoDTO novoAlunoDTO)
         {
             try
             {
-                await _cadastroDeAluno.Criar(alunoDTO.AlunoDTOAluno());
+                await _cadastroDeAluno.Criar(_mapper.Map<Aluno>(novoAlunoDTO));
                 return Ok();
             }
             catch (Exception ex)
@@ -34,7 +37,7 @@ namespace CursoDeIdiomas.UI.Controllers
         {
             try
             {
-                return Ok(_cadastroDeAluno.ObterTodos().Result.AlunosToAlunosDTO());
+                return Ok(_mapper.Map<IEnumerable<AlunoDTO>>(_cadastroDeAluno.ObterTodos()));
             }
             catch (Exception ex)
             {
@@ -46,7 +49,7 @@ namespace CursoDeIdiomas.UI.Controllers
         {
             try
             {
-                return Ok(_cadastroDeAluno.ObterPorId(id).Result.AlunoToAlunoDTO());
+                return Ok(_mapper.Map<IEnumerable<AlunoDTO>>(_cadastroDeAluno.ObterPorId(id)));
             }
             catch (Exception ex)
             {
@@ -58,7 +61,7 @@ namespace CursoDeIdiomas.UI.Controllers
         {
             try
             {
-                await _cadastroDeAluno.Deletar(alunoDTO.AlunoDTOAluno());
+                await _cadastroDeAluno.Deletar(_mapper.Map<Aluno>(alunoDTO));
                 return Ok();
             }
             catch (Exception ex)
@@ -72,7 +75,7 @@ namespace CursoDeIdiomas.UI.Controllers
         {
             try
             {
-                await _cadastroDeAluno.Atualizar(alunoDTO.AlunoDTOAluno());
+                await _cadastroDeAluno.Atualizar(_mapper.Map<Aluno>(alunoDTO));
                 return Ok();
             }
             catch (Exception ex)

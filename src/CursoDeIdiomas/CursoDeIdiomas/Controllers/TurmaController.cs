@@ -1,6 +1,7 @@
-﻿using CursoDeIdiomas.Dominio.Servicos;
+﻿using AutoMapper;
+using CursoDeIdiomas.Dominio.Entidades;
+using CursoDeIdiomas.Dominio.Servicos;
 using CursoDeIdiomas.Servicos.DTOS;
-using CursoDeIdiomas.Servicos.DTOS.Mapping;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CursoDeIdiomas.UI.Controllers
@@ -10,14 +11,16 @@ namespace CursoDeIdiomas.UI.Controllers
     public class TurmaController : ControllerBase
     {
         private ICadastroDeTurmaServico _cadastroDeTurma;
-        public TurmaController(ICadastroDeTurmaServico cadastroDeTurma)
+        private IMapper _mapper;
+        public TurmaController(ICadastroDeTurmaServico cadastroDeTurma, IMapper mapper)
         {
             _cadastroDeTurma = cadastroDeTurma;
+            _mapper = mapper;
         }
         [HttpPost("cadastrar-turma")]
-        public async Task<IActionResult> CadastrarTurma(TurmaDTO turmaDTO)
+        public async Task<IActionResult> CadastrarTurma(NovaTurmaDTO novaTurmaDTO)
         {
-            await _cadastroDeTurma.Criar(turmaDTO.TurmaDTOToTurma());
+            await _cadastroDeTurma.Criar(_mapper.Map<Turma>(novaTurmaDTO));
             return Ok();
         }
         [HttpGet("obter-todas-turmas")]
@@ -25,7 +28,7 @@ namespace CursoDeIdiomas.UI.Controllers
         {
             try
             {
-                return Ok(_cadastroDeTurma.ObterTodos().Result.TurmasToTurmasDTO());
+                return Ok(_mapper.Map<IEnumerable<TurmaDTO>>(_cadastroDeTurma.ObterTodos()));
             }
             catch (Exception ex)
             {
@@ -37,7 +40,7 @@ namespace CursoDeIdiomas.UI.Controllers
         {
             try
             {
-                return Ok(_cadastroDeTurma.ObterPorId(id).Result.TurmaToTurmaDTO());
+                return Ok(_mapper.Map<IEnumerable<TurmaDTO>>(_cadastroDeTurma.ObterPorId(id)));
             }
             catch (Exception ex)
             {
@@ -49,7 +52,7 @@ namespace CursoDeIdiomas.UI.Controllers
         {
             try
             {
-                await _cadastroDeTurma.Deletar(turmaDTO.TurmaDTOToTurma());
+                await _cadastroDeTurma.Deletar(_mapper.Map<Turma>(turmaDTO));
                 return Ok();
             }
             catch (Exception ex)
@@ -63,7 +66,7 @@ namespace CursoDeIdiomas.UI.Controllers
         {
             try
             {
-                await _cadastroDeTurma.Atualizar(turmaDTO.TurmaDTOToTurma());
+                await _cadastroDeTurma.Atualizar(_mapper.Map<Turma>(turmaDTO));
                 return Ok();
             }
             catch (Exception ex)

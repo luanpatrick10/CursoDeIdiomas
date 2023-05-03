@@ -10,6 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.RegistrarServicos();
 builder.Services.RegistrarRepositorios(builder.Configuration);
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 
