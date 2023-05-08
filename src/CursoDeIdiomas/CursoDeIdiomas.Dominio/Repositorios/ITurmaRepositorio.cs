@@ -4,7 +4,7 @@ namespace CursoDeIdiomas.Dominio.Repositorios
 {
     public interface ITurmaRepositorio
     {
-        Task<IEnumerable<Turma>> ObterTurmas();
+        Task<ICollection<Turma>> ObterTurmas();
         Task<Turma> ObterPorId(int? id);
 
         Task<Turma> CriarTuma(Turma turma);

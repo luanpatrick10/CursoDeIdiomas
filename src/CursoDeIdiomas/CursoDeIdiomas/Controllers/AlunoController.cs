@@ -33,11 +33,13 @@ namespace CursoDeIdiomas.UI.Controllers
 
         }
         [HttpGet("obter-todos-alunos")]
-        public async Task<ActionResult<IEnumerable<AlunoDTO>>> ObterAlunos()
+        public async Task<ActionResult<ICollection<Aluno>>> ObterAlunos()
         {
             try
             {
-                return Ok(_mapper.Map<IEnumerable<AlunoDTO>>(_cadastroDeAluno.ObterTodos()));
+                var todos = await _cadastroDeAluno.ObterTodos();
+                return Ok(todos);
+                //return Ok(_mapper.Map<ICollection<Aluno>>(_cadastroDeAluno.ObterTodos()));
             }
             catch (Exception ex)
             {
@@ -45,11 +47,11 @@ namespace CursoDeIdiomas.UI.Controllers
             }
         }
         [HttpGet("obter-aluno/{id}")]
-        public async Task<ActionResult<IEnumerable<AlunoDTO>>> ObterAluno(int id)
+        public async Task<ActionResult<ICollection<AlunoDTO>>> ObterAluno(int id)
         {
             try
             {
-                return Ok(_mapper.Map<IEnumerable<AlunoDTO>>(_cadastroDeAluno.ObterPorId(id)));
+                return Ok(_mapper.Map<ICollection<AlunoDTO>>(_cadastroDeAluno.ObterPorId(id)));
             }
             catch (Exception ex)
             {

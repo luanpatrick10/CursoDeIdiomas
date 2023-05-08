@@ -40,7 +40,7 @@ namespace CursoDeIdiomas.Servicos.Servicos
             return await _alunoRepositorio.ObterPorId(id);
         }
 
-        public async Task<IEnumerable<Aluno>> ObterTodos()
+        public async Task<ICollection<Aluno>> ObterTodos()
         {
             return await _alunoRepositorio.ObterAlunos();
         }

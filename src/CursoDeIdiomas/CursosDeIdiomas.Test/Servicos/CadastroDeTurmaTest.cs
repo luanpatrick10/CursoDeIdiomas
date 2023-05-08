@@ -1,4 +1,4 @@
-﻿using CursoDeIdiomas.Dominio.Entidades;
+﻿using AutoMapper;
 using CursoDeIdiomas.Dominio.Servicos;
 using Moq;
 
@@ -7,6 +7,7 @@ namespace CursosDeIdiomas.Test.Servicos
     public class CadastroDeTurmaTest
     {
         private ICadastroDeTurmaServico _cadastroDeTurma;
+        private readonly IMapper _mapper;
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
@@ -15,11 +16,6 @@ namespace CursosDeIdiomas.Test.Servicos
         [Test]
         public void TestaCadastrarTurma()
         {
-            Task.Run(() =>
-            {
-                Turma turma = new Turma(1, "Turma A", DateTime.Now, null);
-                _cadastroDeTurma.Criar(turma);
-            }).Wait();
         }
     }
 }

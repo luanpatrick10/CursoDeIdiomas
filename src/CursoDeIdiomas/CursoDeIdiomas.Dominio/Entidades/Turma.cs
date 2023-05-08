@@ -11,6 +11,7 @@ namespace CursoDeIdiomas.Dominio.Entidades
 
         public Turma()
         {
+            Alunos = new HashSet<Aluno>();
         }
         public Turma(int id, string numero, DateTime anoLetivo, ICollection<Aluno> alunos)
         {

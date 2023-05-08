@@ -4,7 +4,7 @@ namespace CursoDeIdiomas.Dominio.Repositorios
 {
     public interface IAlunoRepositorio
     {
-        Task<IEnumerable<Aluno>> ObterAlunos();
+        Task<ICollection<Aluno>> ObterAlunos();
         Task<Aluno> ObterPorId(int? id);
 
         Task<Aluno> CriarAluno(Aluno aluno);

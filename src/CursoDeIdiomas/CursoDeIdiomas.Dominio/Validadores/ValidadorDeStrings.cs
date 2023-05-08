@@ -20,30 +20,15 @@
             if (resto != digitos[9])
                 return false;
 
-            resto = CalcularDigitoVerificador(digitos, multiplicadores2, 10);
+            resto = CalcularDigitoVerificador(digitos, multiplicadores2, 9);
             if (resto != digitos[10])
                 return false;
 
             return true;
         }
-        public static bool ValidarEmail(string email)
-        {
-            if (string.IsNullOrWhiteSpace(email))
-                return false;
-
-            try
-            {
-                var enderecoEmail = new System.Net.Mail.MailAddress(email);
-
-                return enderecoEmail.Address == email;
-            }
-            catch (FormatException)
-            {
-                return false;
-            }
-        }
 
         #region Métodos privados
+
         private static string RemoverPontuacao(string texto)
         {
             return new string(texto.Where(char.IsDigit).ToArray());
@@ -51,8 +36,10 @@
 
         private static bool EhCPFValido(string cpf)
         {
-            if (cpf.Length != 11 || !cpf.All(char.IsDigit) || TodosDigitosIguais(cpf))
+            if (string.IsNullOrWhiteSpace(cpf) || cpf.Length != 11 || !cpf.All(char.IsDigit) || TodosDigitosIguais(cpf))
+            {
                 return false;
+            }
 
             return true;
         }
@@ -64,7 +51,9 @@
             foreach (char digito in texto)
             {
                 if (digito != primeiroDigito)
+                {
                     return false;
+                }
             }
 
             return true;
@@ -72,7 +61,15 @@
 
         private static int[] GerarMultiplicadores(int inicio, int fim)
         {
-            return Enumerable.Range(inicio, fim - inicio + 1).ToArray();
+            int tamanhoArray = fim - inicio + 1;
+            int[] multiplicadores = new int[tamanhoArray];
+
+            for (int i = 0; i < tamanhoArray; i++)
+            {
+                multiplicadores[i] = fim--;
+            }
+
+            return multiplicadores;
         }
 
         private static int CalcularSoma(int[] digitos, int[] multiplicadores)
@@ -94,6 +91,25 @@
 
             return resto;
         }
+
         #endregion
+
+        public static bool ValidarEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                return false;
+            }
+
+            try
+            {
+                var enderecoEmail = new System.Net.Mail.MailAddress(email);
+                return enderecoEmail.Address == email;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
     }
 }

@@ -34,7 +34,7 @@ namespace CursoDeIdiomas.Repositorio.Repositorio
             return aluno;
         }
 
-        public async Task<IEnumerable<Aluno>> ObterAlunos()
+        public async Task<ICollection<Aluno>> ObterAlunos()
         {
             return await _applicationDbContext.Alunos.ToListAsync();
         }

@@ -36,7 +36,7 @@ namespace CursoDeIdiomas.Servicos.Servicos
         {
             return await _turmaRepositorio.ObterPorId(id);
         }
-        public async Task<IEnumerable<Turma>> ObterTodos()
+        public async Task<ICollection<Turma>> ObterTodos()
         {
             return await _turmaRepositorio.ObterTurmas();
         }
