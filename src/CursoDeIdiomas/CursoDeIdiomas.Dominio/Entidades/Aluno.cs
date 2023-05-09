@@ -34,7 +34,7 @@ namespace CursoDeIdiomas.Dominio.Entidades
         {
             foreach (Turma turma in TurmasCadastradas)
             {
-                if (TurmasCadastradas.First(turmaCadastrada => turmaCadastrada.Id == turma.Id) != null)
+                if (TurmasCadastradas.Where(turmaCadastrada => turmaCadastrada.Id == turma.Id).Count() > 1)
                     throw new ExcecoesDeDominio($"A turma {turma.Numero}, já esta cadastrado com esse aluno cadastrado.");
             }
         }

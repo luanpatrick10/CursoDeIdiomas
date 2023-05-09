@@ -13,14 +13,14 @@
                 return false;
 
             int[] digitos = cpf.Select(c => int.Parse(c.ToString())).ToArray();
-            int[] multiplicadores1 = GerarMultiplicadores(2, 9).Reverse().ToArray();
-            int[] multiplicadores2 = GerarMultiplicadores(2, 10).Reverse().ToArray();
+            int[] multiplicadores1 = new[] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+            int[] multiplicadores2 = new[] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
 
-            int resto = CalcularDigitoVerificador(digitos, multiplicadores1, 9);
+            int resto = CalcularDigitoVerificador(digitos, multiplicadores1);
             if (resto != digitos[9])
                 return false;
 
-            resto = CalcularDigitoVerificador(digitos, multiplicadores2, 9);
+            resto = CalcularDigitoVerificador(digitos, multiplicadores2);
             if (resto != digitos[10])
                 return false;
 
@@ -76,7 +76,7 @@
         {
             int soma = 0;
 
-            for (int i = 0; i < digitos.Length - 2; i++)
+            for (int i = 0; i < digitos.Length && i < multiplicadores.Length; i++)
             {
                 soma += digitos[i] * multiplicadores[i];
             }
@@ -84,12 +84,22 @@
             return soma;
         }
 
-        private static int CalcularDigitoVerificador(int[] digitos, int[] multiplicadores, int posicao)
+        private static int CalcularDigitoVerificador(int[] digitos, int[] multiplicadores)
         {
-            int soma = CalcularSoma(digitos, multiplicadores);
-            int resto = (soma * 10) % 11 % 10;
+            int soma = 0;
+            for (int i = 0; i < multiplicadores.Length; i++)
+            {
+                soma += digitos[i] * multiplicadores[i];
+            }
 
-            return resto;
+            int resto = soma % 11;
+            int digito = 11 - resto;
+            if (resto < 2)
+            {
+                digito = 0;
+            }
+
+            return digito;
         }
 
         #endregion
