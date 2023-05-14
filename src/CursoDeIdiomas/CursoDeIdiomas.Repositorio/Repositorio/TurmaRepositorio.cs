@@ -36,12 +36,12 @@ namespace CursoDeIdiomas.Repositorio.Repositorio
 
         public async Task<Turma> ObterPorId(int? id)
         {
-            return await _applicationDbContext.Tumas.FindAsync(id);
+            return await _applicationDbContext.Turmas.FindAsync(id);
         }
 
         public async Task<ICollection<Turma>> ObterTurmas()
         {
-            return await _applicationDbContext.Tumas.ToListAsync();
+            return await _applicationDbContext.Turmas.ToListAsync();
         }
     }
 }

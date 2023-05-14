@@ -5,7 +5,7 @@
 namespace CursoDeIdiomas.Repositorio.Migrations
 {
     /// <inheritdoc />
-    public partial class Teste : Migration
+    public partial class Segundo : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -8,7 +8,7 @@ namespace CursoDeIdiomas.Dominio.Entidades
         public string Nome { get; private set; }
         public string Cpf { get; private set; }
         public string Email { get; private set; }
-        public ICollection<Turma> TurmasCadastradas { get; private set; }
+        public ICollection<Turma> TurmasCadastradas { get; private set; } = new List<Turma>();
         public int QuantidadeMinimaDeTurma { get => 1; }
         public Aluno()
         {
@@ -29,6 +29,11 @@ namespace CursoDeIdiomas.Dominio.Entidades
             ValidacoesDeDominio.ValidarSeVerdadeiro(ValidadorDeStrings.ValidarCPF(Cpf), MensagensDeValidacoes.PropriedadeInvalida(nameof(Cpf)));
             ValidacoesDeDominio.ValidarSeVerdadeiro(ValidadorDeStrings.ValidarEmail(Email), MensagensDeValidacoes.PropriedadeInvalida(nameof(Cpf)));
             ValidarSeNaoTemTurmasDuplicado();
+        }
+        public void AlterarTurmasCadastradas(ICollection<Turma> turmasCadastradas)
+        {
+            ValidarEntidade();
+            TurmasCadastradas = turmasCadastradas;
         }
         private void ValidarSeNaoTemTurmasDuplicado()
         {

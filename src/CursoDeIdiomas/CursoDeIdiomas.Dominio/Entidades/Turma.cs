@@ -4,10 +4,11 @@ namespace CursoDeIdiomas.Dominio.Entidades
 {
     public class Turma : Entidade, IAggregateRoot
     {
+
         public string Numero { get; private set; }
         public DateTime AnoLetivo { get; private set; }
         public int LimiteDeAlunos { get => 5; }
-        public ICollection<Aluno> Alunos { get; private set; }
+        public ICollection<Aluno> Alunos { get; private set; } = new List<Aluno>();
 
         public Turma()
         {

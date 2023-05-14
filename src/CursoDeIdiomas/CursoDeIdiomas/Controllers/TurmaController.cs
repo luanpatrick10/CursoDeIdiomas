@@ -48,11 +48,11 @@ namespace CursoDeIdiomas.UI.Controllers
             }
         }
         [HttpPost("deletar-turma")]
-        public async Task<ActionResult> DeletarTurma(TurmaDTO turmaDTO)
+        public async Task<ActionResult> DeletarTurma(int id)
         {
             try
             {
-                await _cadastroDeTurma.Deletar(_mapper.Map<Turma>(turmaDTO));
+                await _cadastroDeTurma.Deletar(id);
                 return Ok();
             }
             catch (Exception ex)

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CursoDeIdiomas.Repositorio.Migrations
 {
     /// <inheritdoc />
-    public partial class PrimeiraMigations : Migration
+    public partial class PrimeiraMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

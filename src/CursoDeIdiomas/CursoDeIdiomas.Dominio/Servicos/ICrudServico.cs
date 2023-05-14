@@ -7,6 +7,6 @@
 
         Task<T> Criar(T entidade);
         Task<T> Atualizar(T entidade);
-        Task<T> Deletar(T entidade);
+        Task<T> Deletar(int id);
     }
 }

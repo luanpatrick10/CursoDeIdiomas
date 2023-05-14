@@ -15,6 +15,13 @@ namespace CursoDeIdiomas.Repositorio.Repositorio
 
         public async Task<Aluno> Atualizar(Aluno aluno)
         {
+            await AdicionarTurmasCadastradas(aluno);
+            _applicationDbContext.Update(aluno);
+            await _applicationDbContext.SaveChangesAsync();
+            return aluno;
+        }
+        public async Task<Aluno> AtualizarSemAdicionarTurmas(Aluno aluno)
+        {
             _applicationDbContext.Update(aluno);
             await _applicationDbContext.SaveChangesAsync();
             return aluno;
@@ -22,7 +29,8 @@ namespace CursoDeIdiomas.Repositorio.Repositorio
 
         public async Task<Aluno> CriarAluno(Aluno aluno)
         {
-            _applicationDbContext.Add(aluno);
+            await AdicionarTurmasCadastradas(aluno);
+            _applicationDbContext.Alunos.Add(aluno);
             await _applicationDbContext.SaveChangesAsync();
             return aluno;
         }
@@ -36,12 +44,22 @@ namespace CursoDeIdiomas.Repositorio.Repositorio
 
         public async Task<ICollection<Aluno>> ObterAlunos()
         {
-            return await _applicationDbContext.Alunos.ToListAsync();
+            return await _applicationDbContext.Alunos.Include(aluno => aluno.TurmasCadastradas).IgnoreAutoIncludes().ToListAsync();
         }
 
         public async Task<Aluno> ObterPorId(int? id)
         {
-            return await _applicationDbContext.Alunos.FindAsync(id);
+            return _applicationDbContext.Alunos.Include(aluno => aluno.TurmasCadastradas).ToList().FirstOrDefault(aluno => aluno.Id == id);
+        }
+        private async Task AdicionarTurmasCadastradas(Aluno aluno)
+        {
+            ICollection<Turma> turmas = new List<Turma>();
+            foreach (Turma turma in aluno.TurmasCadastradas)
+            {
+                var turmaConsultada = await _applicationDbContext.Turmas.FirstAsync(x => x.Id == turma.Id);
+                turmas.Add(turmaConsultada);
+            }
+            aluno.AlterarTurmasCadastradas(turmas);
         }
     }
 }

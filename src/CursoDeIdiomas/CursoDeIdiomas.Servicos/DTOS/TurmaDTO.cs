@@ -1,11 +1,13 @@
-﻿namespace CursoDeIdiomas.Servicos.DTOS
+﻿using CursoDeIdiomas.Dominio.Entidades;
+
+namespace CursoDeIdiomas.Servicos.DTOS
 {
     public class TurmaDTO
     {
         public TurmaDTO()
         {
         }
-        public TurmaDTO(int id, string numero, DateTime anoLetivo, ICollection<AlunoDTO> alunos)
+        public TurmaDTO(int id, string numero, DateTime anoLetivo, ICollection<Aluno> alunos)
         {
             Id = id;
             Numero = numero;
@@ -16,6 +18,6 @@
         public string Numero { get; set; }
         public DateTime AnoLetivo { get; set; }
         public int LimiteDeAlunos { get => 5; }
-        public ICollection<AlunoDTO> Alunos { get; set; }
+        public ICollection<Aluno> Alunos { get; set; }
     }
 }

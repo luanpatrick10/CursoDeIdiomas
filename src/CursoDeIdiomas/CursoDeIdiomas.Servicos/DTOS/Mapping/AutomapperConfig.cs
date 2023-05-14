@@ -10,12 +10,10 @@ namespace CursoDeIdiomas.Servicos.DTOS.Mapping
 
             CreateMap<ReferenciaDeTurmasDTO, Turma>().ForMember(turma => turma.Id, map => map.MapFrom(referernciaDeTurma => referernciaDeTurma.Id));
             CreateMap<NovoAlunoDTO, Aluno>().ForMember(aluno => aluno.TurmasCadastradas, map => map.MapFrom(novoAlunoDTO => novoAlunoDTO.TurmasCadastradas));
-
-            //CreateMap<ICollection<Aluno>, ICollection<AlunoDTO>>().ReverseMap();
-            //CreateMap<ICollection<Turma>, ICollection<TurmaDTO>>().ReverseMap();
-            //CreateMap<Aluno, AlunoDTO>().ReverseMap();
-            //CreateMap<Turma, TurmaDTO>().ReverseMap();
-            //CreateMap<NovaTurmaDTO, Turma>();
+            CreateMap<AtualizarAlunoDTO, Aluno>().ForMember(aluno => aluno.TurmasCadastradas, map => map.MapFrom(novoAlunoDTO => novoAlunoDTO.TurmasCadastradas));
+            CreateMap<Turma, TurmaDTO>().ReverseMap().ForMember(turma => turma.Alunos, map => map.MapFrom(turmaDTO => turmaDTO.Alunos));
+            CreateMap<Aluno, AlunoDTO>().ReverseMap().ForMember(aluno => aluno.TurmasCadastradas, map => map.MapFrom(alunoDTO => alunoDTO.TurmasCadastradas));
+            CreateMap<NovaTurmaDTO, Turma>();
         }
     }
 }

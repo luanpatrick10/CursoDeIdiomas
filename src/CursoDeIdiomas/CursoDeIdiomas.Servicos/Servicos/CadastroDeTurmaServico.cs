@@ -25,8 +25,9 @@ namespace CursoDeIdiomas.Servicos.Servicos
             return await _turmaRepositorio.CriarTuma(turma);
         }
 
-        public async Task<Turma> Deletar(Turma turma)
+        public async Task<Turma> Deletar(int id)
         {
+            Turma turma = await _turmaRepositorio.ObterPorId(id);
             turma.ValidarEntidade();
             ValidarSeNaoPossuirAlunosNaTurma(turma);
             ValidaSeidEhValido(turma.Id);

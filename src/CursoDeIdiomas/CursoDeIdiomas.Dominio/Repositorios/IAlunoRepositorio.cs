@@ -10,5 +10,6 @@ namespace CursoDeIdiomas.Dominio.Repositorios
         Task<Aluno> CriarAluno(Aluno aluno);
         Task<Aluno> Atualizar(Aluno aluno);
         Task<Aluno> Deletar(Aluno aluno);
+        Task<Aluno> AtualizarSemAdicionarTurmas(Aluno aluno);
     }
 }

@@ -30,16 +30,29 @@ namespace CursoDeIdiomas.UI.Controllers
             {
                 return BadRequest(ex.Message);
             }
-
         }
-        [HttpGet("obter-todos-alunos")]
-        public async Task<ActionResult<ICollection<Aluno>>> ObterAlunos()
+
+        [HttpPost("cancelar-matricula-aluno")]
+        public async Task<IActionResult> CancelaMatriculaDoAluno(int id)
         {
             try
             {
-                var todos = await _cadastroDeAluno.ObterTodos();
-                return Ok(todos);
-                //return Ok(_mapper.Map<ICollection<Aluno>>(_cadastroDeAluno.ObterTodos()));
+                await _cadastroDeAluno.CancelarMatriculaDoAluno(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+        [HttpGet("obter-todos-alunos")]
+        public async Task<ActionResult<IEnumerable<AlunoDTO>>> ObterAlunos()
+        {
+            try
+            {
+                return Ok(_mapper.Map<IEnumerable<AlunoDTO>>(await _cadastroDeAluno.ObterTodos()));
             }
             catch (Exception ex)
             {
@@ -47,23 +60,23 @@ namespace CursoDeIdiomas.UI.Controllers
             }
         }
         [HttpGet("obter-aluno/{id}")]
-        public async Task<ActionResult<ICollection<AlunoDTO>>> ObterAluno(int id)
+        public async Task<ActionResult<AlunoDTO>> ObterAluno(int id)
         {
             try
             {
-                return Ok(_mapper.Map<ICollection<AlunoDTO>>(_cadastroDeAluno.ObterPorId(id)));
+                return Ok(_mapper.Map<AlunoDTO>(await _cadastroDeAluno.ObterPorId(id)));
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPost("deletar-aluno")]
-        public async Task<ActionResult> DeletarAluno(AlunoDTO alunoDTO)
+        [HttpDelete("deletar-aluno")]
+        public async Task<ActionResult> DeletarAluno(int id)
         {
             try
             {
-                await _cadastroDeAluno.Deletar(_mapper.Map<Aluno>(alunoDTO));
+                await _cadastroDeAluno.Deletar(id);
                 return Ok();
             }
             catch (Exception ex)
@@ -72,12 +85,12 @@ namespace CursoDeIdiomas.UI.Controllers
             }
         }
 
-        [HttpGet("atualizar-aluno")]
-        public async Task<ActionResult> AtualizarAluno(AlunoDTO alunoDTO)
+        [HttpPut("atualizar-aluno")]
+        public async Task<ActionResult> AtualizarAluno(AtualizarAlunoDTO atualizarAlunoDTO)
         {
             try
             {
-                await _cadastroDeAluno.Atualizar(_mapper.Map<Aluno>(alunoDTO));
+                await _cadastroDeAluno.Atualizar(_mapper.Map<Aluno>(atualizarAlunoDTO));
                 return Ok();
             }
             catch (Exception ex)

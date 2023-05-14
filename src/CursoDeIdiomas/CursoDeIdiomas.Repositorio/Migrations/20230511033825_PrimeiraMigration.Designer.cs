@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CursoDeIdiomas.Repositorio.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230501040557_PrimeiraMigations")]
-    partial class PrimeiraMigations
+    [Migration("20230511033825_PrimeiraMigration")]
+    partial class PrimeiraMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
